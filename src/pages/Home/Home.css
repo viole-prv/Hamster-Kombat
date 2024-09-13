@@ -1,0 +1,60 @@
+.home {
+  padding: 25px;
+}
+.home__game-container {
+  max-width: 425px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+  justify-content: center;
+  justify-items: center;
+}
+.home__game-container .game {
+  display: flex;
+}
+.home__game-container .game__info {
+  display: grid;
+  grid-template-rows: 1fr 30px 24px;
+  justify-items: center;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  user-select: none;
+}
+.home__game-container .game__info .info__image {
+  margin-bottom: 6px;
+}
+.home__game-container .game__info .info__image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+}
+.home__game-container .game__info .info__name {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 12px;
+  text-align: center;
+  text-wrap: balance;
+  margin: auto 0;
+  overflow: hidden;
+}
+.home__game-container .game__info .info__key {
+  display: flex;
+  align-items: flex-end;
+}
+.home__game-container .game__info .info__key .key {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+}
+.home__game-container .game__info .info__key .key .key__icon {
+  width: 16px;
+  height: 16px;
+}
+.home__game-container .game__info .info__key .key .key__count {
+  font-size: 10px;
+  color: #000;
+}
+
+/*# sourceMappingURL=Home.css.map */

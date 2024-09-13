@@ -1,0 +1,68 @@
+.home {
+  padding: 25px;
+
+  &__game-container {
+    max-width: 425px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+    justify-content: center;
+    justify-items: center;
+
+    .game {
+      display: flex;
+
+      &__info {
+        display: grid;
+        grid-template-rows: 1fr 30px 24px;
+        justify-items: center;
+        text-decoration: none;
+        color: #000;
+        cursor: pointer;
+        user-select: none;
+
+        .info__image {
+          margin-bottom: 6px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 6px;
+          }
+        }
+
+        .info__name {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          font-size: 12px;
+          text-align: center;
+          text-wrap: balance;
+          margin: auto 0;
+          overflow: hidden;
+        }
+
+        .info__key {
+          display: flex;
+          align-items: flex-end;
+
+          .key {
+            display: flex;
+            align-items: center;
+            column-gap: 6px;
+
+            .key__icon {
+              width: 16px;
+              height: 16px;
+            }
+
+            .key__count {
+              font-size: 10px;
+              color: #000;
+            }
+          }
+        }
+      }
+    }
+  }
+}
