@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Hamster-Kombat/static/css/main.c6bcb50e.css",
+    "main.js": "/Hamster-Kombat/static/js/main.f2f494dd.js",
+    "index.html": "/Hamster-Kombat/index.html",
+    "main.c6bcb50e.css.map": "/Hamster-Kombat/static/css/main.c6bcb50e.css.map",
+    "main.f2f494dd.js.map": "/Hamster-Kombat/static/js/main.f2f494dd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c6bcb50e.css",
+    "static/js/main.f2f494dd.js"
+  ]
+}
