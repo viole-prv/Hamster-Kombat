@@ -26,7 +26,7 @@ const Page: FC = () => {
     const [loading, setLoading] = useState(false);
 
     const [entry, setEntry] = useState<IEntry | null>(null);
-    const [array, setArray] = useState<string[]>([]);
+    const [array, setArray] = useState<{ code: string; copy: boolean }[]>([]);
 
     useEffect(() => {
         if (name in appList) {
@@ -178,7 +178,11 @@ const Page: FC = () => {
                 Array.from({ length: value }, generateCode),
             );
 
-            setArray(keyList.filter((key): key is string => key !== null));
+            setArray(
+                keyList
+                    .filter((key): key is string => Boolean(key))
+                    .map((code) => ({ code, copy: false })),
+            );
         } finally {
             setLoading(false);
         }
@@ -201,13 +205,26 @@ const Page: FC = () => {
                             <Button onClick={onGenerate}>GENERATE</Button>
                         </>
                     ) : (
-                        array.map((value, index) => (
+                        array.map(({ code, copy }, index) => (
                             <div
                                 className="page__key"
                                 key={index}
+                                style={{
+                                    opacity: copy ? 0.5 : 1,
+                                }}
                             >
-                                <Input value={value} />
-                                <Button onClick={() => copyToClipboard(value)}>
+                                <Input value={code} />
+                                <Button
+                                    onClick={() => {
+                                        copyToClipboard(code);
+
+                                        setArray((array) => [
+                                            ...array.slice(0, index),
+                                            { ...array[index], copy: true },
+                                            ...array.slice(index + 1),
+                                        ]);
+                                    }}
+                                >
                                     COPY
                                 </Button>
                             </div>

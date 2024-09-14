@@ -14,6 +14,7 @@
   display: flex;
   align-items: center;
   column-gap: 10px;
+  transition: opacity 0.2s ease-in-out;
 }
 .page__key .button {
   width: 100px;
