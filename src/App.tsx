@@ -19,6 +19,13 @@ interface IApp {
 }
 
 export const appList: IApp = {
+    "Hide Ball": {
+        id: "4bf4966c-4d22-439b-8ff2-dc5ebca1a600",
+        max: 4,
+        type: "key",
+        image: "https://cdn.hamsterkombat.io/hide_balls/image.jpg",
+        token: "4bf4966c-4d22-439b-8ff2-dc5ebca1a600",
+    },
     Bouncemasters: {
         id: "bc72d3b9-8e91-4884-9c33-f72482f0db37",
         max: 4,
