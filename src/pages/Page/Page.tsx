@@ -12,6 +12,7 @@ import {
     generateEventId,
     getStorage,
     getToday,
+    setStorage,
     sleep,
 } from "../../utils/Helper";
 
@@ -33,16 +34,6 @@ const Page: FC = () => {
             setEntry(appList[name]);
         }
     }, [name]);
-
-    useEffect(() => {
-        if (array.length) {
-            const keyList = getStorage();
-
-            keyList[name] = (keyList[name] || 0) + array.length;
-
-            localStorage.setItem(getToday(), JSON.stringify(keyList));
-        }
-    }, [array]);
 
     if (entry === null) return null;
 
@@ -174,15 +165,21 @@ const Page: FC = () => {
         try {
             setLoading(true);
 
-            const keyList = await Promise.all(
+            const N = await Promise.all(
                 Array.from({ length: value }, generateCode),
             );
 
-            setArray(
-                keyList
-                    .filter((key): key is string => Boolean(key))
-                    .map((code) => ({ code, copy: false })),
+            const array = N.filter((key): key is string => Boolean(key)).map(
+                (code) => ({ code, copy: false }),
             );
+
+            setArray(array);
+
+            const keyList = getStorage();
+
+            keyList[name] = (keyList[name] || 0) + array.length;
+
+            setStorage(keyList);
         } finally {
             setLoading(false);
         }

@@ -7,7 +7,7 @@ import { getStorage } from "../../utils/Helper";
 import "./Home.scss";
 
 const Home: FC = () => {
-    const [keyList] = useState(getStorage());
+    const keyList = getStorage();
 
     return (
         <main className="home">
