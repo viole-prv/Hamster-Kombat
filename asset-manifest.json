@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Hamster-Kombat/static/css/main.2e04ada0.css",
-    "main.js": "/Hamster-Kombat/static/js/main.6d7b370f.js",
+    "main.css": "/Hamster-Kombat/static/css/main.5f2080b7.css",
+    "main.js": "/Hamster-Kombat/static/js/main.7b793452.js",
     "index.html": "/Hamster-Kombat/index.html",
-    "main.2e04ada0.css.map": "/Hamster-Kombat/static/css/main.2e04ada0.css.map",
-    "main.6d7b370f.js.map": "/Hamster-Kombat/static/js/main.6d7b370f.js.map"
+    "main.5f2080b7.css.map": "/Hamster-Kombat/static/css/main.5f2080b7.css.map",
+    "main.7b793452.js.map": "/Hamster-Kombat/static/js/main.7b793452.js.map"
   },
   "entrypoints": [
-    "static/css/main.2e04ada0.css",
-    "static/js/main.6d7b370f.js"
+    "static/css/main.5f2080b7.css",
+    "static/js/main.7b793452.js"
   ]
 }
