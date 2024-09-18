@@ -11,7 +11,6 @@ import {
     generateClientId,
     generateEventId,
     getStorage,
-    getToday,
     setStorage,
     sleep,
 } from "../../utils/Helper";
@@ -27,7 +26,9 @@ const Page: FC = () => {
     const [loading, setLoading] = useState(false);
 
     const [entry, setEntry] = useState<IEntry | null>(null);
-    const [array, setArray] = useState<{ code: string; copy: boolean }[]>([]);
+    const [array, setArray] = useState<
+        { code: string | null; copy: boolean }[]
+    >([]);
 
     useEffect(() => {
         if (name in appList) {
@@ -169,9 +170,7 @@ const Page: FC = () => {
                 Array.from({ length: value }, generateCode),
             );
 
-            const array = N.filter((key): key is string => Boolean(key)).map(
-                (code) => ({ code, copy: false }),
-            );
+            const array = N.map((code) => ({ code, copy: false }));
 
             setArray(array);
 
@@ -210,16 +209,19 @@ const Page: FC = () => {
                                     opacity: copy ? 0.5 : 1,
                                 }}
                             >
-                                <Input value={code} />
+                                <Input value={code || ""} />
                                 <Button
+                                    disabled={code == null}
                                     onClick={() => {
-                                        copyToClipboard(code);
+                                        if (code) {
+                                            copyToClipboard(code);
 
-                                        setArray((array) => [
-                                            ...array.slice(0, index),
-                                            { ...array[index], copy: true },
-                                            ...array.slice(index + 1),
-                                        ]);
+                                            setArray((array) => [
+                                                ...array.slice(0, index),
+                                                { ...array[index], copy: true },
+                                                ...array.slice(index + 1),
+                                            ]);
+                                        }
                                     }}
                                 >
                                     COPY
