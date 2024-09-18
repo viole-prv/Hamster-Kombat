@@ -19,6 +19,20 @@ interface IApp {
 }
 
 export const appList: IApp = {
+    "Pin Out Master": {
+        id: "d2378baf-d617-417a-9d99-d685824335f0",
+        max: 4,
+        type: "key",
+        image: "https://cdn.hamsterkombat.io/pin_out/image.jpg",
+        token: "d2378baf-d617-417a-9d99-d685824335f0",
+    },
+    "Count Masters": {
+        id: "4bdc17da-2601-449b-948e-f8c7bd376553",
+        max: 4,
+        type: "key",
+        image: "https://cdn.hamsterkombat.io/countmasters/image.jpg",
+        token: "4bdc17da-2601-449b-948e-f8c7bd376553",
+    },
     "Hide Ball": {
         id: "4bf4966c-4d22-439b-8ff2-dc5ebca1a600",
         max: 4,
