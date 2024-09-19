@@ -19,6 +19,27 @@ interface IApp {
 }
 
 export const appList: IApp = {
+    "Factory World": {
+        id: "daab8f83-8ea2-4ad0-8dd5-d33363129640",
+        max: 4,
+        type: "key",
+        image: "https://cdn.hamsterkombat.io/factory_world/image.jpg",
+        token: "daab8f83-8ea2-4ad0-8dd5-d33363129640",
+    },
+    "Among Water": {
+        id: "d02fc404-8985-4305-87d8-32bd4e66bb16",
+        max: 4,
+        type: "key",
+        image: "https://cdn.hamsterkombat.io/among_water/image.jpg",
+        token: "d02fc404-8985-4305-87d8-32bd4e66bb16",
+    },
+    "Infected Frontier": {
+        id: "eb518c4b-e448-4065-9d33-06f3039f0fcb",
+        max: 4,
+        type: "key",
+        image: "https://cdn.hamsterkombat.io/infected_frontier/image.jpg",
+        token: "eb518c4b-e448-4065-9d33-06f3039f0fcb",
+    },
     "Pin Out Master": {
         id: "d2378baf-d617-417a-9d99-d685824335f0",
         max: 4,
