@@ -3,6 +3,7 @@ import { HashRouter, Route, Routes } from "react-router-dom";
 
 import Home from "./pages/Home/Home";
 import Page from "./pages/Page/Page";
+import { Provider } from "./utils/Context";
 
 import "./App.scss";
 
@@ -20,18 +21,18 @@ interface IApp {
 
 export const appList: IApp = {
     "Factory World": {
-        id: "daab8f83-8ea2-4ad0-8dd5-d33363129640",
-        max: 4,
-        type: "key",
-        image: "https://cdn.hamsterkombat.io/factory_world/image.jpg",
-        token: "daab8f83-8ea2-4ad0-8dd5-d33363129640",
-    },
-    "Among Water": {
         id: "d02fc404-8985-4305-87d8-32bd4e66bb16",
         max: 4,
         type: "key",
-        image: "https://cdn.hamsterkombat.io/among_water/image.jpg",
+        image: "https://cdn.hamsterkombat.io/factory_world/image.jpg",
         token: "d02fc404-8985-4305-87d8-32bd4e66bb16",
+    },
+    "Among Water": {
+        id: "daab8f83-8ea2-4ad0-8dd5-d33363129640",
+        max: 4,
+        type: "key",
+        image: "https://cdn.hamsterkombat.io/among_water/image.jpg",
+        token: "daab8f83-8ea2-4ad0-8dd5-d33363129640",
     },
     "Infected Frontier": {
         id: "eb518c4b-e448-4065-9d33-06f3039f0fcb",
@@ -105,7 +106,7 @@ export const appList: IApp = {
     },
     "Fluff Crusade": {
         id: "112887b0-a8af-4eb2-ac63-d82df78283d9",
-        max: 8,
+        max: 4,
         type: "coin",
         image: "https://cdn.hamsterkombat.io/fluff/image.jpg",
         token: "112887b0-a8af-4eb2-ac63-d82df78283d9",
@@ -142,18 +143,20 @@ export const appList: IApp = {
 
 function App() {
     return (
-        <HashRouter>
-            <Routes>
-                <Route
-                    path="/"
-                    element={<Home />}
-                />
-                <Route
-                    path="/:name"
-                    element={<Page />}
-                />
-            </Routes>
-        </HashRouter>
+        <Provider>
+            <HashRouter>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={<Home />}
+                    />
+                    <Route
+                        path="/:app"
+                        element={<Page />}
+                    />
+                </Routes>
+            </HashRouter>
+        </Provider>
     );
 }
 

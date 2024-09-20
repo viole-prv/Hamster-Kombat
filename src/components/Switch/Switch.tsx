@@ -12,18 +12,21 @@ type Props = {
 const Switch: FC<Props> = ({ min, value, max, onChange }) => {
     return (
         <div className="switch">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                onClick={() => {
-                    if (value > min) {
-                        onChange(value - 1);
-                    }
-                }}
-            >
-                <title>minus</title>
-                <path d="M19,13H5V11H19V13Z" />
-            </svg>
+            <div>
+                <span onClick={() => onChange(min)}>MIN</span>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    onClick={() => {
+                        if (value > min) {
+                            onChange(value - 1);
+                        }
+                    }}
+                >
+                    <title>minus</title>
+                    <path d="M19,13H5V11H19V13Z" />
+                </svg>
+            </div>
             <input
                 type="number"
                 value={value}
@@ -38,18 +41,21 @@ const Switch: FC<Props> = ({ min, value, max, onChange }) => {
                     }
                 }}
             />
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                onClick={() => {
-                    if (value < max) {
-                        onChange(value + 1);
-                    }
-                }}
-            >
-                <title>plus</title>
-                <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
-            </svg>
+            <div>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    onClick={() => {
+                        if (value < max) {
+                            onChange(value + 1);
+                        }
+                    }}
+                >
+                    <title>plus</title>
+                    <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+                </svg>
+                <span onClick={() => onChange(max)}>MAX</span>
+            </div>
         </div>
     );
 };

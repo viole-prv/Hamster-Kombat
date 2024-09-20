@@ -1,9 +1,9 @@
-export const getToday = () => new Date().toISOString().split("T")[0];
+const getToday = () => new Date().toISOString().split("T")[0];
 
-export const setStorage = (value: { [key: string]: number }) =>
+export const setJsonStorage = (value: { [code: string]: number }) =>
     localStorage.setItem(getToday(), JSON.stringify(value));
 
-export const getStorage = (): { [key: string]: number } =>
+export const getJsonStorage = (): { [code: string]: number } =>
     JSON.parse(localStorage.getItem(getToday()) || "{}");
 
 export const generateClientId = (): string => {

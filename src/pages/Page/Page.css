@@ -9,14 +9,14 @@
   width: 100%;
   text-decoration: none;
 }
-.page__key {
+.page__code {
   width: 100%;
   display: flex;
   align-items: center;
   column-gap: 10px;
   transition: opacity 0.2s ease-in-out;
 }
-.page__key .button {
+.page__code .button {
   width: 100px;
 }
 

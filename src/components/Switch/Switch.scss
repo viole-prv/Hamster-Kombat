@@ -7,13 +7,32 @@
   padding: 4px 8px;
   box-shadow: 0 0 10px #ccc;
 
-  svg {
-    height: 22px;
-    fill: var(--primary-100);
-    transition: fill .2s ease-in-out;
+  div {
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
 
-    &:hover {
-      fill: var(--primary-200);
+    span {
+      font-size: 10px;
+      color: var(--primary-100);
+      margin-top: 1.5px;
+      transition: fill .2s ease-in-out;
+      user-select: none;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--primary-200);
+      }
+    }
+
+    svg {
+      height: 22px;
+      fill: var(--primary-100);
+      transition: fill .2s ease-in-out;
+
+      &:hover {
+        fill: var(--primary-200);
+      }
     }
   }
 

@@ -11,10 +11,6 @@
   cursor: pointer;
   transition: box-shadow 0.2s ease-in-out;
 }
-.button:disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
 .button:hover {
   box-shadow: 0 0 10px var(--primary-200);
 }

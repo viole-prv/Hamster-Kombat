@@ -1,7 +1,7 @@
 .home {
   padding: 25px;
 
-  &__game-container {
+  &__app-container {
     max-width: 425px;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -9,7 +9,7 @@
     justify-content: center;
     justify-items: center;
 
-    .game {
+    .app {
       display: flex;
 
       &__info {
@@ -42,21 +42,21 @@
           overflow: hidden;
         }
 
-        .info__key {
+        .info__code {
           display: flex;
           align-items: flex-end;
 
-          .key {
+          .code {
             display: flex;
             align-items: center;
             column-gap: 6px;
 
-            .key__icon {
+            .code__icon {
               width: 16px;
               height: 16px;
             }
 
-            .key__count {
+            .code__count {
               font-size: 10px;
               color: #000;
             }

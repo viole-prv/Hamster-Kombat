@@ -1,21 +1,22 @@
 import React, { FC } from "react";
 
+import Spinner from "../Loader/Spinner";
+
 import "./Button.scss";
 
 type Props = {
-    disabled?: boolean;
+    loading?: boolean;
     children: string;
     onClick?: () => void;
 };
 
-const Button: FC<Props> = ({ disabled, children, onClick }) => {
+const Button: FC<Props> = ({ loading, children, onClick }) => {
     return (
         <button
             className="button"
-            disabled={disabled}
             onClick={onClick}
         >
-            <span>{children}</span>
+            {loading ? <Spinner /> : <span>{children}</span>}
         </button>
     );
 };

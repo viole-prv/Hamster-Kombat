@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { appList, IEntry } from "../../App";
@@ -6,35 +6,40 @@ import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 import Point from "../../components/Loader/Point";
 import Switch from "../../components/Switch/Switch";
+import { Context } from "../../utils/Context";
 import {
     copyToClipboard,
     generateClientId,
     generateEventId,
-    getStorage,
-    setStorage,
     sleep,
 } from "../../utils/Helper";
 
 import "./Page.scss";
 
-const Page: FC = () => {
-    const { name } = useParams<{ name: string }>();
+interface ICode {
+    value: string | null;
+    copy?: boolean;
+    loading?: boolean;
+}
 
-    if (name === undefined) return null;
+const Page: FC = () => {
+    const { app } = useParams<{ app: string }>();
+
+    if (app === undefined) return null;
+
+    const { setCount } = useContext(Context);
 
     const [value, setValue] = useState(1);
     const [loading, setLoading] = useState(false);
 
     const [entry, setEntry] = useState<IEntry | null>(null);
-    const [array, setArray] = useState<
-        { code: string | null; copy: boolean }[]
-    >([]);
+    const [code, setCode] = useState<ICode[]>([]);
 
     useEffect(() => {
-        if (name in appList) {
-            setEntry(appList[name]);
+        if (app in appList) {
+            setEntry(appList[app]);
         }
-    }, [name]);
+    }, [app]);
 
     if (entry === null) return null;
 
@@ -170,17 +175,41 @@ const Page: FC = () => {
                 Array.from({ length: value }, generateCode),
             );
 
-            const array = N.map((code) => ({ code, copy: false }));
+            const code = N.map((code) => ({ value: code }));
 
-            setArray(array);
+            setCode(code);
 
-            const keyList = getStorage();
-
-            keyList[name] = (keyList[name] || 0) + array.length;
-
-            setStorage(keyList);
+            setCount(app, code.length);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const updateCode = (index: number, data: Partial<ICode>) => {
+        setCode((early) =>
+            early.map((code, i) => (i === index ? { ...code, ...data } : code)),
+        );
+    };
+
+    const onCopy = (value: string, index: number) => {
+        copyToClipboard(value);
+
+        updateCode(index, {
+            copy: true,
+        });
+    };
+
+    const onRetry = async (index: number) => {
+        try {
+            updateCode(index, {
+                loading: true,
+            });
+
+            updateCode(index, { value: await generateCode() });
+        } finally {
+            updateCode(index, {
+                loading: false,
+            });
         }
     };
 
@@ -190,7 +219,7 @@ const Page: FC = () => {
                 <Point />
             ) : (
                 <>
-                    {array.length === 0 ? (
+                    {code.length === 0 ? (
                         <>
                             <Switch
                                 min={1}
@@ -201,31 +230,37 @@ const Page: FC = () => {
                             <Button onClick={onGenerate}>GENERATE</Button>
                         </>
                     ) : (
-                        array.map(({ code, copy }, index) => (
+                        code.map(({ value, copy, loading }, index) => (
                             <div
-                                className="page__key"
                                 key={index}
+                                className="page__code"
                                 style={{
                                     opacity: copy ? 0.5 : 1,
                                 }}
                             >
-                                <Input value={code || ""} />
-                                <Button
-                                    disabled={code == null}
-                                    onClick={() => {
-                                        if (code) {
-                                            copyToClipboard(code);
+                                <Input value={value || ""} />
+                                {value ? (
+                                    <Button
+                                        onClick={() => {
+                                            if (value == null) return;
 
-                                            setArray((array) => [
-                                                ...array.slice(0, index),
-                                                { ...array[index], copy: true },
-                                                ...array.slice(index + 1),
-                                            ]);
-                                        }
-                                    }}
-                                >
-                                    COPY
-                                </Button>
+                                            onCopy(value, index);
+                                        }}
+                                    >
+                                        COPY
+                                    </Button>
+                                ) : (
+                                    <Button
+                                        loading={loading}
+                                        onClick={() => {
+                                            if (loading) return;
+
+                                            onRetry(index);
+                                        }}
+                                    >
+                                        RETRY
+                                    </Button>
+                                )}
                             </div>
                         ))
                     )}
