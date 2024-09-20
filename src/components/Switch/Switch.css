@@ -15,7 +15,6 @@
 .switch div span {
   font-size: 10px;
   color: var(--primary-100);
-  margin-top: 1.5px;
   transition: fill 0.2s ease-in-out;
   user-select: none;
   cursor: pointer;
